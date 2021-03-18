@@ -16,7 +16,7 @@ class HistoryView : public QDialog
 {
 Q_OBJECT
 public:
-    HistoryView(QWidget *parent = nullptr,const QList<DataItem> histList = {},const QString &title = "History" );
+    explicit HistoryView(QWidget *parent = nullptr,const QList<DataItem> histList = {},const QString &title = "History" );
 private:
     QTableWidget *table;
     QPushButton *deleteBtn;

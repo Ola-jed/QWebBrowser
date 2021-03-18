@@ -39,7 +39,7 @@ class WebBrowser : public QMainWindow
 Q_OBJECT
 
 public:
-    WebBrowser(QWidget *parent = nullptr);
+    explicit WebBrowser(QWidget *parent = nullptr);
     ~WebBrowser();
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
