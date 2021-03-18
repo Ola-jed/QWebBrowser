@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/history.ico</file>
+        <file>assets/home.ico</file>
+        <file>assets/icon.ico</file>
+        <file>assets/info.ico</file>
+        <file>assets/new.ico</file>
+        <file>assets/next.ico</file>
+        <file>assets/previous.ico</file>
+        <file>assets/open.ico</file>
+        <file>assets/private.ico</file>
+        <file>assets/refresh.ico</file>
+        <file>assets/search.ico</file>
+        <file>assets/help.ico</file>
+        <file>assets/menu.ico</file>
+        <file>assets/favorites.ico</file>
+        <file>assets/download.ico</file>
+    </qresource>
+</RCC>
