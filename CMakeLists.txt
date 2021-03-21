@@ -6,7 +6,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(QT_VERSION 5)
+if( NOT Qt6_FOUND )
+    set(QT_VERSION 5)
+else()
+    set(QT_VERSION 6)
+endif()
+
 set(REQUIRED_LIBS Core Gui Widgets Sql WebEngineWidgets)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Sql Qt5::WebEngineWidgets)
 
