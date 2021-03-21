@@ -13,7 +13,7 @@ else()
 endif()
 
 set(REQUIRED_LIBS Core Gui Widgets Sql WebEngineWidgets)
-set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Sql Qt5::WebEngineWidgets)
+set(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Widgets Qt${QT_VERSION}::Sql Qt${QT_VERSION}::WebEngineWidgets)
 
 add_executable(${PROJECT_NAME} src/main.cpp src/dataitem.hpp src/dataitemmanager.cpp src/dataitemmanager.hpp src/historyview.cpp src/historyview.hpp src/webview.cpp src/webview.hpp webbrowserressources.qrc src/webbrowser.cpp src/webbrowser.hpp src/style.hpp)
 
