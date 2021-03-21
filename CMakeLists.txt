@@ -6,6 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+find_package(Qt6 COMPONENTS Widgets)
 if( NOT Qt6_FOUND )
     set(QT_VERSION 5)
 else()
