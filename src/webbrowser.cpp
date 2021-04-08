@@ -163,13 +163,14 @@ void WebBrowser::onFavoriteDeleted(int pos)
     }
 }
 
-// Tabs and url gestion
+// Tabs and url manager
 void WebBrowser::onNewTab()
 {
     auto view = new WebView(this);
     view->settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
     view->load(HOME_PAGE);
     tabViews->addTab(view,"New Tab");
+    tabViews->setCurrentIndex(tabViews->count() - 1); // Go to the new tab
 }
 
 void WebBrowser::updateIcon()
