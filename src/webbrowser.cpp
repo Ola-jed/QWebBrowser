@@ -186,6 +186,7 @@ void WebBrowser::onNewPrivateTab()
     tabViews->addTab(view,PRIVATE_TAB);
 }
 
+// Private tabs are identified by their name.
 bool WebBrowser::isPrivate() const
 {
     return (tabViews->tabText(tabViews->currentIndex()) == PRIVATE_TAB);
@@ -226,6 +227,7 @@ void WebBrowser::onRefresh()
     currentWebview()->reload();
 }
 
+// Open the home page
 void WebBrowser::goHome()
 {
     onOpenUrl(HOME_PAGE);
@@ -267,7 +269,7 @@ void WebBrowser::onFavorites()
     historyView->show();
 }
 
-// Page gestion.
+// Page management
 void WebBrowser::onPreviousPage()
 {
     currentWebview()->back();
