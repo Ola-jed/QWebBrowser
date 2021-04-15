@@ -1,11 +1,12 @@
 #ifndef WEBBROWSER_HPP
 #define WEBBROWSER_HPP
 
+#include "style.hpp"
+#include "webview.hpp"
 #include "dataitem.hpp"
 #include "historyview.hpp"
 #include "dataitemmanager.hpp"
-#include "style.hpp"
-#include "webview.hpp"
+#include <QUrl>
 #include <QFile>
 #include <QScreen>
 #include <QStyle>
@@ -15,16 +16,13 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QFileDialog>
-#include <QUrl>
 #include <QApplication>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
-#include <QWebEngineView>
 #include <QWebEnginePage>
-#include <QWebEngineSettings>
 #include <QTabWidget>
 #include <QList>
 #include <QMessageBox>
@@ -41,10 +39,12 @@ class WebBrowser : public QMainWindow
     public:
         explicit WebBrowser(QWidget *parent = nullptr);
         ~WebBrowser();
+
     protected:
         bool eventFilter(QObject *obj, QEvent *event) override;
         void dragEnterEvent(QDragEnterEvent *event) override;
         void dropEvent(QDropEvent *event) override;
+
     private:
         const QString PRIVATE_TAB {"Private Tab"};
         const QString HISTORY_FILENAME {"History.txt"};
@@ -89,6 +89,7 @@ class WebBrowser : public QMainWindow
 
         QProgressBar *loadingBar;
         DataItemManager dataManager{};
+
     private slots:
         void onUrl();
         void onRefresh();

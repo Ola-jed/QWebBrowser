@@ -2,12 +2,11 @@
 #define HISTORYVIEW_HPP
 
 #include "dataitem.hpp"
+#include <QUrl>
+#include <QIcon>
 #include <QDialog>
 #include <QObject>
 #include <QPushButton>
-#include <QUrl>
-#include <QDebug>
-#include <QIcon>
 #include <QVBoxLayout>
 #include <QTableWidget>
 #include <QDesktopWidget>

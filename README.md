@@ -11,6 +11,6 @@ You need to have [qt](https://www.qt.io/download-qt-installer) installed  to bui
 git clone https://github.com/Ola-jed/QWebBrowser.git
 cd QWebBrowser
 cmake --build cmake-build-debug --target QWebBrowser -- -j 3
-cmake-build-debug/QWebBrowser
+cmake-build-debug/QWebBrowser # You can pass the urls you want to open
 ```
 Just import the project if you use an qt creator or visual studio.
