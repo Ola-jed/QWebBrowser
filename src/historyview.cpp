@@ -1,15 +1,14 @@
 #include "historyview.hpp"
 
-HistoryView::HistoryView(QWidget *parent,const QList<DataItem> histList,const QString &title)
+HistoryView::HistoryView(QWidget *parent,const QList<DataItem> &histList,const QString &title)
         :QDialog(parent),historyList(histList)
 {
     resize(QDesktopWidget().availableGeometry(this).size() * 0.5);
     setWindowTitle(title);
     setWindowIcon(QIcon(":assets/history.png"));
-
+    // Table layout management
     table     = new QTableWidget(historyList.size(),3,this);
     deleteBtn = new QPushButton(QIcon(":assets/delete.ico"),"",this);
-
     table->setFixedSize(width(),height());
     const auto columnWidth {table->width()/3};
     table->setColumnWidth(0,columnWidth);
@@ -18,9 +17,8 @@ HistoryView::HistoryView(QWidget *parent,const QList<DataItem> histList,const QS
     table->setHorizontalHeaderItem(0,new QTableWidgetItem("Date and Time"));
     table->setHorizontalHeaderItem(1,new QTableWidgetItem("Title"));
     table->setHorizontalHeaderItem(2,new QTableWidgetItem("Url"));
-
     int i{0};
-    foreach(auto temp, historyList)
+    foreach(auto const &temp, historyList)
     {
         table->setItem(i,0,new QTableWidgetItem(temp.date,0));
         table->setItem(i,1,new QTableWidgetItem(temp.title,0));
@@ -31,7 +29,7 @@ HistoryView::HistoryView(QWidget *parent,const QList<DataItem> histList,const QS
     auto *lay = new QVBoxLayout(this);
     lay->addWidget(table,9);
     lay->addWidget(deleteBtn,1);
-
+    // Connections
     connect(table,&QTableWidget::cellDoubleClicked,this,&HistoryView::onItemClicked);
     connect(deleteBtn,&QPushButton::clicked,this,&HistoryView::onDelete);
 }

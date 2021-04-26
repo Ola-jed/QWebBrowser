@@ -37,7 +37,7 @@ void WebBrowser::makeConnections()
     connect(currentWebview(), &WebView::loadFinished,this, &WebBrowser::onEndLoading);
 }
 
-// Building the mainwindow components.
+// Building the main window components.
 void WebBrowser::buildComponents()
 {
     installEventFilter(this);
@@ -82,12 +82,12 @@ void WebBrowser::buildMenu()
 // Define the app layout
 void WebBrowser::applyLayout()
 {
-    auto *lineLayout = new QHBoxLayout();
+    auto lineLayout = new QHBoxLayout();
     lineLayout->addWidget(urlLineEdit,19);
     lineLayout->addWidget(searchButton,1);
     lineLayout->setSpacing(0);
     lineLayout->setContentsMargins(0,0,0,0);
-    auto *topLayout  = new QHBoxLayout();
+    auto topLayout  = new QHBoxLayout();
     topLayout->setAlignment(Qt::AlignVCenter);
     topLayout->addWidget(previousButton,1);
     topLayout->addWidget(nextButton,1);
@@ -98,7 +98,7 @@ void WebBrowser::applyLayout()
     topLayout->addWidget(favoritesButton,1);
     topLayout->addWidget(downloadButton,1);
     topLayout->addWidget(menubar,1);
-    auto *appLayout = new QVBoxLayout();
+    auto appLayout = new QVBoxLayout();
     appLayout->setContentsMargins(0,0,0,0);
     appLayout->addLayout(topLayout,1);
     appLayout->addWidget(loadingBar,1);
@@ -117,7 +117,7 @@ void WebBrowser::applyStyle()
     setStyleSheet(STYLE);
 }
 
-// History and Favorites gestion.
+// History and Favorites managment.
 void WebBrowser::onLoadHistory()
 {
     history = dataManager.selectAllFromHistory();
@@ -287,10 +287,10 @@ void WebBrowser::updateTitle()
 
 void WebBrowser::updateConnect()
 {
-    connect(currentWebview(), &WebView::loadStarted,  this, &WebBrowser::onStartLoading);
-    connect(currentWebview(), &WebView::loadProgress, this, &WebBrowser::onLoading);
-    connect(currentWebview(), &WebView::loadFinished, this, &WebBrowser::onEndLoading);
-    connect(currentWebview(), &WebView::loadFinished, this, &WebBrowser::onUrlChanged);
+    connect(currentWebview(),&WebView::loadStarted,this,&WebBrowser::onStartLoading);
+    connect(currentWebview(),&WebView::loadProgress,this,&WebBrowser::onLoading);
+    connect(currentWebview(),&WebView::loadFinished,this,&WebBrowser::onEndLoading);
+    connect(currentWebview(),&WebView::loadFinished,this,&WebBrowser::onUrlChanged);
 }
 
 // Loading bar.
@@ -323,10 +323,10 @@ void WebBrowser::loadLocalFile()
     tabViews->addTab(view,fileName);
 }
 
-// Download the curent page
+// Download the current page
 void WebBrowser::downloadCurrentPage()
 {
-    const auto pageName = QFileDialog::getSaveFileName(this,"Download page");
+    const auto pageName{QFileDialog::getSaveFileName(this, "Download page")};
     if((pageName.isEmpty()) || (pageName.isNull())) return;
     currentWebview()->page()->save(pageName);
 }
@@ -348,6 +348,7 @@ bool WebBrowser::eventFilter(QObject *obj, QEvent *event)
 // Drag event to open local web pages.
 void WebBrowser::dragEnterEvent(QDragEnterEvent *e)
 {
+    // Check for our needed mime type, here a file or a list of files
     if (e->mimeData()->hasUrls())
     {
         e->acceptProposedAction();
@@ -357,15 +358,10 @@ void WebBrowser::dragEnterEvent(QDragEnterEvent *e)
 // Drop event to open local web pages.
 void WebBrowser::dropEvent(QDropEvent *event)
 {
-    const QMimeData* mimeData = event->mimeData();
-    // Check for our needed mime type, here a file or a list of files
-    if (mimeData->hasUrls())
-    {
-        QList<QUrl> urlList = mimeData->urls();
-        // Extract the local paths of the files.
-        const QString filename {urlList[0].toString().right(urlList[0].toString().length() - 7)};
-        onOpenUrl(QUrl::fromLocalFile(filename));
-    }
+    const auto urlList = event->mimeData()->urls();
+    // Extract the local path from the file.
+    const auto filename {urlList[0].toLocalFile()};
+    onOpenUrl(QUrl::fromLocalFile(filename));
 }
 
 void WebBrowser::onQuit()
