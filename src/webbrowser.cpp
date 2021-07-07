@@ -11,12 +11,12 @@ WebBrowser::WebBrowser(QWidget *parent)
     makeConnections();
 }
 
-// Connections.
+/// Connections.
 void WebBrowser::makeConnections()
 {
     connect(tabViews,&QTabWidget::tabCloseRequested,this, &WebBrowser::onCloseTab);
-    connect(tabViews,&QTabWidget::currentChanged,   this, &WebBrowser::onUpdateLineEdit);
-    connect(tabViews,&QTabWidget::currentChanged,   this, &WebBrowser::updateTitle);
+    connect(tabViews,&QTabWidget::currentChanged,this, &WebBrowser::onUpdateLineEdit);
+    connect(tabViews,&QTabWidget::currentChanged,this, &WebBrowser::updateTitle);
     connect(tabViews,&QTabWidget::currentChanged,   this, &WebBrowser::updateConnect);
     connect(tabViews,&QTabWidget::currentChanged,   this, &WebBrowser::onUrlChanged);
     connect(localFile,   &QAction::triggered,this, &WebBrowser::loadLocalFile);
