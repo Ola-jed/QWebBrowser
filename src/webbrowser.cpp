@@ -87,7 +87,7 @@ void WebBrowser::applyLayout()
     lineLayout->addWidget(searchButton,1);
     lineLayout->setSpacing(0);
     lineLayout->setContentsMargins(0,0,0,0);
-    auto topLayout  = new QHBoxLayout();
+    auto topLayout = new QHBoxLayout();
     topLayout->setAlignment(Qt::AlignVCenter);
     topLayout->addWidget(previousButton,1);
     topLayout->addWidget(nextButton,1);
@@ -99,7 +99,7 @@ void WebBrowser::applyLayout()
     topLayout->addWidget(downloadButton,1);
     topLayout->addWidget(menubar,1);
     auto appLayout = new QVBoxLayout();
-    appLayout->setContentsMargins(0,0,0,0);
+    appLayout->setContentsMargins(0,5,0,0);
     appLayout->addLayout(topLayout,1);
     appLayout->addWidget(loadingBar,1);
     appLayout->addWidget(tabViews,28);
@@ -114,7 +114,6 @@ void WebBrowser::applyStyle()
     setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),QGuiApplication::primaryScreen()->availableGeometry()));
     setWindowIcon(QIcon(":assets/icon.ico"));
     tabViews->setTabIcon(0,myWebView->icon());
-    setStyleSheet(STYLE);
 }
 
 // History and Favorites managment.
@@ -147,7 +146,7 @@ void WebBrowser::onAddFavorites()
 
 void WebBrowser::onHistoryItemDeleted(int pos)
 {
-    if((pos < history.size()) && (history.size() > 0) && (pos >= 0))
+    if((pos < history.size()) && (!history.empty()) && (pos >= 0))
     {
         dataManager.deleteItemFromHistory(history.at(pos));
         history.removeAt(pos);

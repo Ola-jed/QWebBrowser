@@ -16,5 +16,6 @@
         <file>assets/favorites.ico</file>
         <file>assets/download.ico</file>
         <file>assets/delete.ico</file>
+        <file>assets/list.ico</file>
     </qresource>
 </RCC>

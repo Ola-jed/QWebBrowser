@@ -1,7 +1,6 @@
 #ifndef WEBBROWSER_HPP
 #define WEBBROWSER_HPP
 
-#include "style.hpp"
 #include "webview.hpp"
 #include "dataitem.hpp"
 #include "historyview.hpp"

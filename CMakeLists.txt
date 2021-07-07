@@ -16,7 +16,7 @@ endif()
 set(REQUIRED_LIBS Core Gui Widgets Sql WebEngineWidgets)
 set(REQUIRED_LIBS_QUALIFIED Qt${QT_VERSION}::Core Qt${QT_VERSION}::Gui Qt${QT_VERSION}::Widgets Qt${QT_VERSION}::Sql Qt${QT_VERSION}::WebEngineWidgets)
 
-add_executable(${PROJECT_NAME} src/main.cpp include/dataitem.hpp src/dataitemmanager.cpp include/dataitemmanager.hpp src/historyview.cpp include/historyview.hpp src/webview.cpp include/webview.hpp webbrowserressources.qrc src/webbrowser.cpp include/webbrowser.hpp include/style.hpp)
+add_executable(${PROJECT_NAME} src/main.cpp include/dataitem.hpp src/dataitemmanager.cpp include/dataitemmanager.hpp src/historyview.cpp include/historyview.hpp src/webview.cpp include/webview.hpp resources.qrc src/webbrowser.cpp include/webbrowser.hpp)
 
 if (NOT CMAKE_PREFIX_PATH)
     message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
