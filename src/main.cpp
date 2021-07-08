@@ -2,10 +2,13 @@
 
 int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setApplicationName("QWebBrowser");
     QCoreApplication::setOrganizationName("QWebBrowser");
     QCoreApplication::setApplicationVersion("1.0");
-    QApplication a(argc, argv);
+    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::PluginsEnabled,true);
     WebBrowser w;
     // If the program receives arguments (urls), we open the urls given
     if(argc > 1)

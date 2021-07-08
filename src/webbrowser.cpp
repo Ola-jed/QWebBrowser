@@ -11,33 +11,34 @@ WebBrowser::WebBrowser(QWidget *parent)
     makeConnections();
 }
 
-/// Connections.
+/// Connections
 void WebBrowser::makeConnections()
 {
     connect(tabViews,&QTabWidget::tabCloseRequested,this, &WebBrowser::onCloseTab);
     connect(tabViews,&QTabWidget::currentChanged,this, &WebBrowser::onUpdateLineEdit);
     connect(tabViews,&QTabWidget::currentChanged,this, &WebBrowser::updateTitle);
-    connect(tabViews,&QTabWidget::currentChanged,   this, &WebBrowser::updateConnect);
-    connect(tabViews,&QTabWidget::currentChanged,   this, &WebBrowser::onUrlChanged);
-    connect(localFile,   &QAction::triggered,this, &WebBrowser::loadLocalFile);
-    connect(privateTab,  &QAction::triggered,this, &WebBrowser::onNewPrivateTab);
-    connect(historyMenu, &QAction::triggered,this, &WebBrowser::onHistory);
+    connect(tabViews,&QTabWidget::currentChanged,this, &WebBrowser::updateConnect);
+    connect(tabViews,&QTabWidget::currentChanged,this, &WebBrowser::onUrlChanged);
+    connect(localFile,&QAction::triggered,this, &WebBrowser::loadLocalFile);
+    connect(privateTab,&QAction::triggered,this, &WebBrowser::onNewPrivateTab);
+    connect(historyMenu,&QAction::triggered,this, &WebBrowser::onHistory);
     connect(favoriteList,&QAction::triggered,this, &WebBrowser::onFavorites);
     connect(favoritesButton,&QPushButton::clicked,this,&WebBrowser::onAddFavorites);
-    connect(searchButton,   &QPushButton::clicked,this,&WebBrowser::onUrl);
-    connect(newTabButton,   &QPushButton::clicked,this,&WebBrowser::onNewTab);
-    connect(refreshButton,  &QPushButton::clicked,this,&WebBrowser::onRefresh);
-    connect(homeButton,     &QPushButton::clicked,this,&WebBrowser::goHome);
-    connect(previousButton, &QPushButton::clicked,this,&WebBrowser::onPreviousPage);
-    connect(nextButton,     &QPushButton::clicked,this,&WebBrowser::onNextPage);
-    connect(downloadButton, &QPushButton::clicked,this,&WebBrowser::downloadCurrentPage);
-    connect(currentWebview(), &WebView::loadStarted,this, &WebBrowser::onUrlChanged);
-    connect(currentWebview(), &WebView::loadStarted, this, &WebBrowser::onStartLoading);
-    connect(currentWebview(), &WebView::loadProgress,this, &WebBrowser::onLoading);
-    connect(currentWebview(), &WebView::loadFinished,this, &WebBrowser::onEndLoading);
+    connect(searchButton,&QPushButton::clicked,this,&WebBrowser::onUrl);
+    connect(newTabButton,&QPushButton::clicked,this,&WebBrowser::onNewTab);
+    connect(refreshButton,&QPushButton::clicked,this,&WebBrowser::onRefresh);
+    connect(homeButton,&QPushButton::clicked,this,&WebBrowser::goHome);
+    connect(previousButton,&QPushButton::clicked,this,&WebBrowser::onPreviousPage);
+    connect(nextButton,&QPushButton::clicked,this,&WebBrowser::onNextPage);
+    connect(downloadButton,&QPushButton::clicked,this,&WebBrowser::downloadCurrentPage);
+    connect(currentWebview(), &WebView::loadStarted,this,&WebBrowser::onUrlChanged);
+    connect(currentWebview(), &WebView::loadStarted, this,&WebBrowser::onStartLoading);
+    connect(currentWebview(), &WebView::loadProgress,this,&WebBrowser::onLoading);
+    connect(currentWebview(), &WebView::loadFinished,this,&WebBrowser::onEndLoading);
+    connect(currentWebview(), &WebView::iconChanged,this,&WebBrowser::updateIcon);
 }
 
-// Building the main window components.
+/// Building the main window components.
 void WebBrowser::buildComponents()
 {
     installEventFilter(this);
@@ -68,7 +69,7 @@ void WebBrowser::buildComponents()
     tabViews->addTab(myWebView,"New Tab");
 }
 
-// Building the menu components.
+/// Building the menu components.
 void WebBrowser::buildMenu()
 {
     menubar->addMenu(menu);
@@ -79,7 +80,7 @@ void WebBrowser::buildMenu()
     menu->addAction(favoriteList);
 }
 
-// Define the app layout
+/// Define the app layout
 void WebBrowser::applyLayout()
 {
     auto lineLayout = new QHBoxLayout();
@@ -108,7 +109,7 @@ void WebBrowser::applyLayout()
     setCentralWidget(central);
 }
 
-// Set the application style.
+/// Set the application style.
 void WebBrowser::applyStyle()
 {
     setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),QGuiApplication::primaryScreen()->availableGeometry()));
@@ -116,17 +117,19 @@ void WebBrowser::applyStyle()
     tabViews->setTabIcon(0,myWebView->icon());
 }
 
-// History and Favorites managment.
+// History and Favorites management.
 void WebBrowser::onLoadHistory()
 {
     history = dataManager.selectAllFromHistory();
 }
 
+/// Load all stored favorites
 void WebBrowser::onLoadFavorites()
 {
     favorites = dataManager.selectAllFavorites();
 }
 
+/// Add a page to the history
 void WebBrowser::addToHistory(const QString &title,const QUrl &urlToAdd)
 {
     if((!urlToAdd.toString().isEmpty()) && (!urlToAdd.toString().isNull()))
@@ -137,6 +140,7 @@ void WebBrowser::addToHistory(const QString &title,const QUrl &urlToAdd)
     }
 }
 
+/// Adding a page to the favorites
 void WebBrowser::onAddFavorites()
 {
     const DataItem tempFav{QDateTime::currentDateTime().toString(),currentWebview()->title(),currentWebview()->url().toString()};
@@ -144,6 +148,7 @@ void WebBrowser::onAddFavorites()
     dataManager.addFavorite(tempFav);
 }
 
+/// Deletion of an item in the history
 void WebBrowser::onHistoryItemDeleted(int pos)
 {
     if((pos < history.size()) && (!history.empty()) && (pos >= 0))
@@ -153,6 +158,7 @@ void WebBrowser::onHistoryItemDeleted(int pos)
     }
 }
 
+/// Deletion of an item in the favorites list
 void WebBrowser::onFavoriteDeleted(int pos)
 {
     if((pos < favorites.size()) && (!favorites.empty()) && (pos >= 0))
@@ -162,7 +168,7 @@ void WebBrowser::onFavoriteDeleted(int pos)
     }
 }
 
-// Tabs and url manager
+/// Tabs and url manager
 void WebBrowser::onNewTab()
 {
     auto view = new WebView(this);
@@ -172,9 +178,10 @@ void WebBrowser::onNewTab()
     tabViews->setCurrentIndex(tabViews->count() - 1); // Go to the new tab
 }
 
-void WebBrowser::updateIcon()
+/// Update the favicon
+void WebBrowser::updateIcon(const QIcon &icon)
 {
-    tabViews->setTabIcon(tabViews->currentIndex(),currentWebview()->icon());
+    tabViews->setTabIcon(tabViews->currentIndex(),icon);
 }
 
 void WebBrowser::onNewPrivateTab()
@@ -196,7 +203,6 @@ void WebBrowser::onUrlChanged()
     urlLineEdit->setText(currentWebview()->url().toString());
     if(!isPrivate())
     {
-        updateIcon();
         tabViews->setTabText(tabViews->currentIndex(),currentWebview()->title());
     }
 }
@@ -290,6 +296,7 @@ void WebBrowser::updateConnect()
     connect(currentWebview(),&WebView::loadProgress,this,&WebBrowser::onLoading);
     connect(currentWebview(),&WebView::loadFinished,this,&WebBrowser::onEndLoading);
     connect(currentWebview(),&WebView::loadFinished,this,&WebBrowser::onUrlChanged);
+    connect(currentWebview(),&WebView::iconChanged,this,&WebBrowser::updateIcon);
 }
 
 // Loading bar.
@@ -313,7 +320,7 @@ void WebBrowser::onEndLoading()
     loadingBar->setValue(0);
 }
 
-// Load a local file in a qwebview
+// Load a local file in a q webview
 void WebBrowser::loadLocalFile()
 {
     auto const fileName {QFileDialog::getOpenFileName(this,"Open a local page","/home","*.htm *.shtml *.xhtml  *.html")};
@@ -326,7 +333,7 @@ void WebBrowser::loadLocalFile()
 void WebBrowser::downloadCurrentPage()
 {
     const auto pageName{QFileDialog::getSaveFileName(this, "Download page")};
-    if((pageName.isEmpty()) || (pageName.isNull())) return;
+    if((pageName.trimmed().isEmpty()) || (pageName.isNull())) return;
     currentWebview()->page()->save(pageName);
 }
 
@@ -372,6 +379,3 @@ WebView* WebBrowser::currentWebview() const
 {
     return qobject_cast<WebView*>(tabViews->currentWidget());
 }
-
-WebBrowser::~WebBrowser()
-{}

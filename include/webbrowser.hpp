@@ -37,7 +37,7 @@ class WebBrowser : public QMainWindow
 
     public:
         explicit WebBrowser(QWidget *parent = nullptr);
-        ~WebBrowser();
+        ~WebBrowser() = default;
 
     protected:
         bool eventFilter(QObject *obj, QEvent *event) override;
@@ -108,7 +108,7 @@ class WebBrowser : public QMainWindow
         void onLoading(int percentage);
         void onEndLoading();
         void onAddFavorites();
-        void updateIcon();
+        void updateIcon(const QIcon &icon);
         void updateTitle();
         void loadLocalFile();
         void downloadCurrentPage();
