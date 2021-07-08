@@ -51,7 +51,7 @@ class WebBrowser : public QMainWindow
         const QString HTTPS{"https://"};
         const QUrl HOME_PAGE{"https://www.google.bj"};
 
-        WebView *currentWebview() const;
+        WebView* currentWebview() const;
         void onLoadHistory();
         void onLoadFavorites();
         void addToHistory(const QString &title,const QUrl &urlToAdd);

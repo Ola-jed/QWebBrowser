@@ -4,6 +4,7 @@
 #include "dataitem.hpp"
 #include <QUrl>
 #include <QIcon>
+#include <QDebug>
 #include <QDialog>
 #include <QObject>
 #include <QPushButton>

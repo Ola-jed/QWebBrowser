@@ -5,7 +5,7 @@ HistoryView::HistoryView(QWidget *parent,const QList<DataItem> &histList,const Q
 {
     resize(QDesktopWidget().availableGeometry(this).size() * 0.5);
     setWindowTitle(title);
-    setWindowIcon(QIcon(":assets/history.png"));
+    setWindowIcon(QIcon(":assets/history.ico"));
     // Table layout management
     table     = new QTableWidget(historyList.size(),3,this);
     deleteBtn = new QPushButton(QIcon(":assets/delete.ico"),"",this);
@@ -18,7 +18,7 @@ HistoryView::HistoryView(QWidget *parent,const QList<DataItem> &histList,const Q
     table->setHorizontalHeaderItem(1,new QTableWidgetItem("Title"));
     table->setHorizontalHeaderItem(2,new QTableWidgetItem("Url"));
     int i{0};
-    foreach(auto const &temp, historyList)
+    for(auto const &temp : historyList)
     {
         table->setItem(i,0,new QTableWidgetItem(temp.date,0));
         table->setItem(i,1,new QTableWidgetItem(temp.title,0));
@@ -26,14 +26,14 @@ HistoryView::HistoryView(QWidget *parent,const QList<DataItem> &histList,const Q
         i++;
     }
     table->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    auto *lay = new QVBoxLayout(this);
+    auto lay = new QVBoxLayout(this);
     lay->addWidget(table,9);
     lay->addWidget(deleteBtn,1);
-    // Connections
     connect(table,&QTableWidget::cellDoubleClicked,this,&HistoryView::onItemClicked);
     connect(deleteBtn,&QPushButton::clicked,this,&HistoryView::onDelete);
 }
 
+/// Deletion of a row
 void HistoryView::onDelete()
 {
     const int pos {table->currentRow()};
@@ -46,6 +46,9 @@ void HistoryView::onDelete()
     }
 }
 
+/// Click on an item of the view
+/// \param x
+/// \param y
 void HistoryView::onItemClicked(int x,int y)
 {
     Q_UNUSED(y)

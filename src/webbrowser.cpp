@@ -351,7 +351,8 @@ bool WebBrowser::eventFilter(QObject *obj, QEvent *event)
     return QObject::eventFilter(obj, event);
 }
 
-// Drag event to open local web pages.
+/// Drag event to open local web pages.
+/// \param e
 void WebBrowser::dragEnterEvent(QDragEnterEvent *e)
 {
     // Check for our needed mime type, here a file or a list of files
@@ -361,7 +362,8 @@ void WebBrowser::dragEnterEvent(QDragEnterEvent *e)
     }
 }
 
-// Drop event to open local web pages.
+/// Drop event to open local web pages.
+/// \param event
 void WebBrowser::dropEvent(QDropEvent *event)
 {
     const auto urlList = event->mimeData()->urls();
