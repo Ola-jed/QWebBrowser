@@ -51,7 +51,7 @@ class WebBrowser : public QMainWindow
         const QString HTTPS{"https://"};
         const QUrl HOME_PAGE{"https://www.google.bj"};
 
-        WebView* currentWebview() const;
+        WebView* currentWebView() const;
         void onLoadHistory();
         void onLoadFavorites();
         void addToHistory(const QString &title,const QUrl &urlToAdd);
@@ -91,7 +91,7 @@ class WebBrowser : public QMainWindow
 
     private slots:
         void onUrl();
-        void onRefresh();
+        void onReload();
         void onUpdateLineEdit();
         void onNewPrivateTab();
         void onCloseTab(const int &index);
