@@ -13,7 +13,7 @@ cmake .
 make
 ./QWebBrowser # You can pass the urls you want to open
 ```
-Just import the project if you use an qt creator or visual studio.
+Just import the project if you use an ide.
 
-
+## Screenshot
 ![Screenshot_20210708_092947](https://user-images.githubusercontent.com/66482155/124889598-295b3680-dfcf-11eb-90e5-8919f590bcd9.png)
