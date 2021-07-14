@@ -112,7 +112,9 @@ void WebBrowser::applyLayout()
 /// Set the application style.
 void WebBrowser::applyStyle()
 {
-    setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),QGuiApplication::primaryScreen()->availableGeometry()));
+    resize(700,700);
+    setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),
+                                    QGuiApplication::primaryScreen()->availableGeometry()));
     setWindowIcon(QIcon(":assets/icon.ico"));
     tabViews->setTabIcon(0,myWebView->icon());
 }
@@ -145,7 +147,8 @@ void WebBrowser::addToHistory(const QString &title,const QUrl &urlToAdd)
 /// Adding a page to the favorites
 void WebBrowser::onAddFavorites()
 {
-    const DataItem tempFav{QDateTime::currentDateTime().toString(), currentWebView()->title(), currentWebView()->url().toString()};
+    const DataItem tempFav{QDateTime::currentDateTime().toString(),
+                           currentWebView()->title(), currentWebView()->url().toString()};
     favorites.push_back(tempFav);
     dataManager.addFavorite(tempFav);
 }
@@ -224,7 +227,10 @@ void WebBrowser::onUrl()
 /// \param urlToOpen
 void WebBrowser::onOpenUrl(const QUrl &urlToOpen)
 {
-    const auto url {((urlToOpen.toString().left(7) == HTTP)||(urlToOpen.toString().left(8) == HTTPS)) ? urlToOpen.toString() : HTTPS+urlToOpen.toString()};
+    const auto url {((urlToOpen.toString().left(7) == HTTP)||(urlToOpen.toString().left(8) == HTTPS))
+        ? urlToOpen.toString()
+        : HTTPS+urlToOpen.toString()
+    };
     if(!QUrl{url}.isValid())
     {
         urlLineEdit->setText(url);
