@@ -18,7 +18,7 @@ HistoryView::HistoryView(QWidget *parent,const QList<DataItem> &histList,const Q
     table->setHorizontalHeaderItem(1,new QTableWidgetItem("Title"));
     table->setHorizontalHeaderItem(2,new QTableWidgetItem("Url"));
     int i{0};
-    for(auto const &temp : historyList)
+    for(auto const &temp : qAsConst(historyList))
     {
         table->setItem(i,0,new QTableWidgetItem(temp.date,0));
         table->setItem(i,1,new QTableWidgetItem(temp.title,0));

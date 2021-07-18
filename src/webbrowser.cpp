@@ -317,11 +317,11 @@ void WebBrowser::updateTitle()
 /// Make the connections when tab is changed
 void WebBrowser::updateConnect()
 {
-    connect(currentWebView(), &WebView::loadStarted, this, &WebBrowser::onStartLoading);
-    connect(currentWebView(), &WebView::loadProgress, this, &WebBrowser::onLoading);
-    connect(currentWebView(), &WebView::loadFinished, this, &WebBrowser::onEndLoading);
-    connect(currentWebView(), &WebView::loadFinished, this, &WebBrowser::onUrlChanged);
-    connect(currentWebView(), &WebView::iconChanged, this, &WebBrowser::updateIcon);
+    connect(currentWebView(),&WebView::loadStarted, this, &WebBrowser::onStartLoading);
+    connect(currentWebView(),&WebView::loadProgress, this, &WebBrowser::onLoading);
+    connect(currentWebView(),&WebView::loadFinished, this, &WebBrowser::onEndLoading);
+    connect(currentWebView(),&WebView::loadFinished, this, &WebBrowser::onUrlChanged);
+    connect(currentWebView(),&WebView::iconChanged, this, &WebBrowser::updateIcon);
 }
 
 /// Loading bar show.
@@ -348,7 +348,7 @@ void WebBrowser::onEndLoading()
     loadingBar->setValue(0);
 }
 
-/// Load a local file in a q webview
+/// Load a local file in a qwebview
 void WebBrowser::loadLocalFile()
 {
     auto const fileName {QFileDialog::getOpenFileName(this,"Open a local page","/home","*.htm *.shtml *.xhtml  *.html")};
@@ -374,7 +374,7 @@ bool WebBrowser::eventFilter(QObject *obj, QEvent *event)
     if(event->type() == QEvent::KeyPress)
     {
         auto *keyEvent = dynamic_cast<QKeyEvent *>(event);
-        if(((keyEvent->key() == Qt::Key_Return)) && (urlLineEdit->cursorPosition() != 0))
+        if((keyEvent->key() == Qt::Key_Return) && (urlLineEdit->cursorPosition() != 0))
         {
             onUrl();
         }
