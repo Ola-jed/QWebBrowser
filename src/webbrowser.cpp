@@ -112,7 +112,7 @@ void WebBrowser::applyLayout()
 /// Set the application style.
 void WebBrowser::applyStyle()
 {
-    resize(700,700);
+    resize(700,500);
     setGeometry(QStyle::alignedRect(Qt::LeftToRight,Qt::AlignCenter,size(),
                                     QGuiApplication::primaryScreen()->availableGeometry()));
     setWindowIcon(QIcon(":assets/icon.ico"));
