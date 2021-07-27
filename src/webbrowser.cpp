@@ -42,24 +42,24 @@ void WebBrowser::makeConnections()
 void WebBrowser::buildComponents()
 {
     installEventFilter(this);
-    myWebView = new WebView(this);
-    loadingBar = new QProgressBar(this);
-    tabViews = new QTabWidget(this);
-    menubar = new QMenuBar(this);
-    menu = new QMenu("Menu", this);
-    urlLineEdit = new QLineEdit(this);
-    searchButton = new QPushButton(QIcon(":assets/search.ico"), "", this);
-    newTabButton = new QPushButton(QIcon(":assets/new.ico"), "", this);
-    homeButton = new QPushButton(QIcon(":assets/home.ico"), "", this);
-    previousButton = new QPushButton(QIcon(":assets/previous.ico"), "", this);
-    nextButton = new QPushButton(QIcon(":assets/next.ico"), "", this);
-    refreshButton = new QPushButton(QIcon(":assets/refresh.ico"), "", this);
+    myWebView       = new WebView(this);
+    loadingBar      = new QProgressBar(this);
+    tabViews        = new QTabWidget(this);
+    menubar         = new QMenuBar(this);
+    menu            = new QMenu("Menu", this);
+    urlLineEdit     = new QLineEdit(this);
+    searchButton    = new QPushButton(QIcon(":assets/search.ico"), "", this);
+    newTabButton    = new QPushButton(QIcon(":assets/new.ico"), "", this);
+    homeButton      = new QPushButton(QIcon(":assets/home.ico"), "", this);
+    previousButton  = new QPushButton(QIcon(":assets/previous.ico"), "", this);
+    nextButton      = new QPushButton(QIcon(":assets/next.ico"), "", this);
+    refreshButton   = new QPushButton(QIcon(":assets/refresh.ico"), "", this);
     favoritesButton = new QPushButton(QIcon(":assets/favorites.ico"), "", this);
-    downloadButton = new QPushButton(QIcon(":assets/download.ico"), "", this);
-    privateTab = new QAction(QIcon(":assets/private.ico"), "Private tab", this);
-    historyMenu = new QAction(QIcon(":assets/history.ico"), "History", this);
-    localFile = new QAction(QIcon(":assets/open.ico"), "Open a local file", this);
-    favoriteList = new QAction(QIcon(":assets/list.ico"), "Favorite list", this);
+    downloadButton  = new QPushButton(QIcon(":assets/download.ico"), "", this);
+    privateTab      = new QAction(QIcon(":assets/private.ico"), "Private tab", this);
+    historyMenu     = new QAction(QIcon(":assets/history.ico"), "History", this);
+    localFile       = new QAction(QIcon(":assets/open.ico"), "Open a local file", this);
+    favoriteList    = new QAction(QIcon(":assets/list.ico"), "Favorite list", this);
     myWebView->load(HOME_PAGE);
     myWebView->settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
     loadingBar->setVisible(false);
@@ -354,7 +354,7 @@ void WebBrowser::loadLocalFile()
 {
     auto const fileName{QFileDialog::getOpenFileName(this, "Open a local page", "/home",
                                                      "*.htm *.shtml *.xhtml  *.html")};
-    auto view = new WebView(this);
+    auto       view = new WebView(this);
     view->load(QUrl::fromLocalFile(fileName));
     tabViews->addTab(view, fileName);
 }

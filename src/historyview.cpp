@@ -7,7 +7,7 @@ HistoryView::HistoryView(QWidget *parent, const QList<DataItem> &histList, const
     setWindowTitle(title);
     setWindowIcon(QIcon(":assets/history.ico"));
     // Table layout management
-    table = new QTableWidget(historyList.size(), 3, this);
+    table     = new QTableWidget(historyList.size(), 3, this);
     deleteBtn = new QPushButton(QIcon(":assets/delete.ico"), "", this);
     table->setFixedSize(width(), height());
     const auto columnWidth{table->width() / 3};
