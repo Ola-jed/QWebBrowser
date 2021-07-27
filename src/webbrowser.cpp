@@ -80,6 +80,7 @@ void WebBrowser::initTooltips()
     refreshButton->setToolTip("Refresh");
     favoritesButton->setToolTip("Favorites");
     downloadButton->setToolTip("Download");
+    homeButton->setToolTip("Home");
 }
 
 /// Building the menu components.
