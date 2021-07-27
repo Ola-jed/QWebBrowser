@@ -5,6 +5,7 @@ WebBrowser::WebBrowser(QWidget *parent)
 {
     onLoadHistory();
     buildComponents();
+    initTooltips();
     buildMenu();
     applyLayout();
     applyStyle();
@@ -67,6 +68,18 @@ void WebBrowser::buildComponents()
     tabViews->setTabShape(QTabWidget::Rounded);
     tabViews->setElideMode(Qt::ElideRight);
     tabViews->addTab(myWebView, "New Tab");
+}
+
+/// Create tooltips for buttons
+void WebBrowser::initTooltips()
+{
+    searchButton->setToolTip("Search");
+    newTabButton->setToolTip("New tab");
+    previousButton->setToolTip("Previous");
+    nextButton->setToolTip("Next");
+    refreshButton->setToolTip("Refresh");
+    favoritesButton->setToolTip("Favorites");
+    downloadButton->setToolTip("Download");
 }
 
 /// Building the menu components.
@@ -136,7 +149,7 @@ void WebBrowser::onLoadFavorites()
 /// \param urlToAdd
 void WebBrowser::addToHistory(const QString &title, const QUrl &urlToAdd)
 {
-    if ((!urlToAdd.toString().isEmpty()) && (!urlToAdd.toString().isNull()))
+    if (!urlToAdd.toString().trimmed().isEmpty())
     {
         const DataItem tempItem{QDateTime::currentDateTime().toString(), title,
                                 urlToAdd.toString()};
@@ -373,7 +386,6 @@ void WebBrowser::downloadCurrentPage()
 /// The enter key event on the urlLineEdit.
 /// \param obj
 /// \param event
-/// \return
 bool WebBrowser::eventFilter(QObject *obj, QEvent *event)
 {
     if (event->type() == QEvent::KeyPress)

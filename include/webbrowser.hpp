@@ -42,7 +42,6 @@ public:
 
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
-
     void dragEnterEvent(QDragEnterEvent *event) override;
 
     void dropEvent(QDropEvent *event) override;
@@ -52,42 +51,32 @@ private:
     const QString HISTORY_FILENAME{"History.txt"};
     const QString HTTP{"http://"};
     const QString HTTPS{"https://"};
-    const QUrl HOME_PAGE{"https://www.google.bj"};
+    const QUrl    HOME_PAGE{"https://www.google.bj"};
 
     WebView *currentWebView() const;
-
     void onLoadHistory();
-
     void onLoadFavorites();
-
     void addToHistory(const QString &title, const QUrl &urlToAdd);
-
     bool isPrivate() const;
-
     void buildComponents();
-
+    void initTooltips();
     void buildMenu();
-
     void applyStyle();
-
     void applyLayout();
-
     void makeConnections();
 
-    QTabWidget *tabViews;
+    QTabWidget     *tabViews;
     QWebEngineView *myWebView;
-    QLineEdit *urlLineEdit;
-    QUrl currentUrl;
-
+    QLineEdit      *urlLineEdit;
+    QUrl           currentUrl;
     QList<DataItem> history;
     QList<DataItem> favorites;
-
     QMenuBar *menubar;
-    QMenu *menu;
-    QAction *historyMenu;
-    QAction *privateTab;
-    QAction *localFile;
-    QAction *favoriteList;
+    QMenu    *menu;
+    QAction  *historyMenu;
+    QAction  *privateTab;
+    QAction  *localFile;
+    QAction  *favoriteList;
 
     QPushButton *favoritesButton;
     QPushButton *searchButton;
@@ -98,61 +87,37 @@ private:
     QPushButton *homeButton;
     QPushButton *downloadButton;
 
-    QProgressBar *loadingBar;
+    QProgressBar    *loadingBar;
     DataItemManager dataManager{};
 
 private slots:
 
     void onUrl();
-
     void onReload();
-
     void onUpdateLineEdit();
-
     void onNewPrivateTab();
-
     void onCloseTab(const int &index);
-
     void onHistory();
-
     void onFavorites();
-
     void onQuit();
-
     void onHistoryItemDeleted(int pos);
-
     void onFavoriteDeleted(int pos);
-
     void onUrlChanged();
-
     void onPreviousPage();
-
     void onNextPage();
-
     void goHome();
-
     void onStartLoading();
-
     void onLoading(int percentage);
-
     void onEndLoading();
-
     void onAddFavorites();
-
     void updateIcon(const QIcon &icon);
-
     void updateTitle();
-
     void loadLocalFile();
-
     void downloadCurrentPage();
-
     void updateConnect();
 
 public slots:
-
     void onNewTab();
-
     void onOpenUrl(const QUrl &urlToOpen);
 };
 
