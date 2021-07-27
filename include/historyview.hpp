@@ -14,23 +14,28 @@
 
 class HistoryView : public QDialog
 {
-    Q_OBJECT
+Q_OBJECT
 
-    public:
-        explicit HistoryView(QWidget *parent = nullptr,const QList<DataItem> &histList = {},const QString &title = "History" );
+public:
+    explicit HistoryView(QWidget *parent = nullptr, const QList<DataItem> &histList = {},
+                         const QString &title = "History");
 
-    private:
-        QTableWidget *table;
-        QPushButton *deleteBtn;
-        QList<DataItem> historyList{};
+private:
+    QTableWidget *table;
+    QPushButton *deleteBtn;
+    QList<DataItem> historyList{};
 
-    private slots:
-        void onDelete();
-        void onItemClicked(int x,int y);
+private slots:
 
-    signals:
-        void historyItemDeleted(int);
-        void goToUrl(QUrl url);
+    void onDelete();
+
+    void onItemClicked(int x, int y);
+
+signals:
+
+    void historyItemDeleted(int);
+
+    void goToUrl(QUrl url);
 };
 
 #endif // HISTORYVIEW_HPP

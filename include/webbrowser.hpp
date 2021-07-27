@@ -33,89 +33,127 @@
 
 class WebBrowser : public QMainWindow
 {
-    Q_OBJECT
+Q_OBJECT
 
-    public:
-        explicit WebBrowser(QWidget *parent = nullptr);
-        ~WebBrowser() = default;
+public:
+    explicit WebBrowser(QWidget *parent = nullptr);
 
-    protected:
-        bool eventFilter(QObject *obj, QEvent *event) override;
-        void dragEnterEvent(QDragEnterEvent *event) override;
-        void dropEvent(QDropEvent *event) override;
+    ~WebBrowser() = default;
 
-    private:
-        const QString PRIVATE_TAB {"Private Tab"};
-        const QString HISTORY_FILENAME {"History.txt"};
-        const QString HTTP{"http://"};
-        const QString HTTPS{"https://"};
-        const QUrl HOME_PAGE{"https://www.google.bj"};
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
-        WebView* currentWebView() const;
-        void onLoadHistory();
-        void onLoadFavorites();
-        void addToHistory(const QString &title,const QUrl &urlToAdd);
-        bool isPrivate() const;
-        void buildComponents();
-        void buildMenu();
-        void applyStyle();
-        void applyLayout();
-        void makeConnections();
+    void dragEnterEvent(QDragEnterEvent *event) override;
 
-        QTabWidget *tabViews;
-        QWebEngineView *myWebView;
-        QLineEdit *urlLineEdit;
-        QUrl currentUrl;
+    void dropEvent(QDropEvent *event) override;
 
-        QList<DataItem> history;
-        QList<DataItem> favorites;
+private:
+    const QString PRIVATE_TAB{"Private Tab"};
+    const QString HISTORY_FILENAME{"History.txt"};
+    const QString HTTP{"http://"};
+    const QString HTTPS{"https://"};
+    const QUrl HOME_PAGE{"https://www.google.bj"};
 
-        QMenuBar *menubar;
-        QMenu *menu;
-        QAction *historyMenu;
-        QAction *privateTab;
-        QAction *localFile;
-        QAction *favoriteList;
+    WebView *currentWebView() const;
 
-        QPushButton *favoritesButton;
-        QPushButton *searchButton;
-        QPushButton *newTabButton;
-        QPushButton *previousButton;
-        QPushButton *nextButton;
-        QPushButton *refreshButton;
-        QPushButton *homeButton;
-        QPushButton *downloadButton;
+    void onLoadHistory();
 
-        QProgressBar *loadingBar;
-        DataItemManager dataManager{};
+    void onLoadFavorites();
 
-    private slots:
-        void onUrl();
-        void onReload();
-        void onUpdateLineEdit();
-        void onNewPrivateTab();
-        void onCloseTab(const int &index);
-        void onHistory();
-        void onFavorites();
-        void onQuit();
-        void onHistoryItemDeleted(int pos);
-        void onFavoriteDeleted(int pos);
-        void onUrlChanged();
-        void onPreviousPage();
-        void onNextPage();
-        void goHome();
-        void onStartLoading();
-        void onLoading(int percentage);
-        void onEndLoading();
-        void onAddFavorites();
-        void updateIcon(const QIcon &icon);
-        void updateTitle();
-        void loadLocalFile();
-        void downloadCurrentPage();
-        void updateConnect();
+    void addToHistory(const QString &title, const QUrl &urlToAdd);
 
-    public slots:
-        void onNewTab();
-        void onOpenUrl(const QUrl &urlToOpen);
+    bool isPrivate() const;
+
+    void buildComponents();
+
+    void buildMenu();
+
+    void applyStyle();
+
+    void applyLayout();
+
+    void makeConnections();
+
+    QTabWidget *tabViews;
+    QWebEngineView *myWebView;
+    QLineEdit *urlLineEdit;
+    QUrl currentUrl;
+
+    QList<DataItem> history;
+    QList<DataItem> favorites;
+
+    QMenuBar *menubar;
+    QMenu *menu;
+    QAction *historyMenu;
+    QAction *privateTab;
+    QAction *localFile;
+    QAction *favoriteList;
+
+    QPushButton *favoritesButton;
+    QPushButton *searchButton;
+    QPushButton *newTabButton;
+    QPushButton *previousButton;
+    QPushButton *nextButton;
+    QPushButton *refreshButton;
+    QPushButton *homeButton;
+    QPushButton *downloadButton;
+
+    QProgressBar *loadingBar;
+    DataItemManager dataManager{};
+
+private slots:
+
+    void onUrl();
+
+    void onReload();
+
+    void onUpdateLineEdit();
+
+    void onNewPrivateTab();
+
+    void onCloseTab(const int &index);
+
+    void onHistory();
+
+    void onFavorites();
+
+    void onQuit();
+
+    void onHistoryItemDeleted(int pos);
+
+    void onFavoriteDeleted(int pos);
+
+    void onUrlChanged();
+
+    void onPreviousPage();
+
+    void onNextPage();
+
+    void goHome();
+
+    void onStartLoading();
+
+    void onLoading(int percentage);
+
+    void onEndLoading();
+
+    void onAddFavorites();
+
+    void updateIcon(const QIcon &icon);
+
+    void updateTitle();
+
+    void loadLocalFile();
+
+    void downloadCurrentPage();
+
+    void updateConnect();
+
+public slots:
+
+    void onNewTab();
+
+    void onOpenUrl(const QUrl &urlToOpen);
 };
+
 #endif // WEBBROWSER_HPP

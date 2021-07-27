@@ -7,16 +7,17 @@
 
 class WebView : public QWebEngineView
 {
-    Q_OBJECT
+Q_OBJECT
 
-    public:
-        explicit WebView(QWidget *parent = nullptr);
+public:
+    explicit WebView(QWidget *parent = nullptr);
 
-    protected:
-        QWebEngineView* createWindow(QWebEnginePage::WebWindowType type) override;
+protected:
+    QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) override;
 
-    signals:
-        void viewOpened(const QUrl &url);
+signals:
+
+    void viewOpened(const QUrl &url);
 };
 
 #endif // WEBVIEW_HPP
