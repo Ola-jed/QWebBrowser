@@ -37,7 +37,6 @@ Q_OBJECT
 
 public:
     explicit WebBrowser(QWidget *parent = nullptr);
-
     ~WebBrowser() = default;
 
 protected:

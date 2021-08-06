@@ -16,7 +16,6 @@ protected:
     QWebEngineView *createWindow(QWebEnginePage::WebWindowType type) override;
 
 signals:
-
     void viewOpened(const QUrl &url);
 };
 

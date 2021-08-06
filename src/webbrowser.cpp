@@ -68,6 +68,7 @@ void WebBrowser::buildComponents()
     tabViews->setTabShape(QTabWidget::Rounded);
     tabViews->setElideMode(Qt::ElideRight);
     tabViews->addTab(myWebView, "New Tab");
+    tabViews->setStyleSheet("QTabWidget::pane { border: 0; }");
 }
 
 /// Create tooltips for buttons
