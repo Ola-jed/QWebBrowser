@@ -191,7 +191,7 @@ void WebBrowser::onFavoriteDeleted(int pos)
     }
 }
 
-/// Tabs and url manager
+/// Open a new tab and switch to this new tab
 void WebBrowser::onNewTab()
 {
     auto view = new WebView(this);

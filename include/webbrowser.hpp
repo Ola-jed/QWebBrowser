@@ -65,7 +65,7 @@ private:
     void makeConnections();
 
     QTabWidget     *tabViews;
-    QWebEngineView *myWebView;
+    WebView *myWebView;
     QLineEdit      *urlLineEdit;
     QUrl           currentUrl;
     QList<DataItem> history;

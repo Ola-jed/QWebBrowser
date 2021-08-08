@@ -13,6 +13,5 @@ WebView::WebView(QWidget *parent) : QWebEngineView(parent)
 QWebEngineView *WebView::createWindow(QWebEnginePage::WebWindowType type)
 {
     Q_UNUSED(type)
-    emit viewOpened(page()->url());
     return this;
 }
