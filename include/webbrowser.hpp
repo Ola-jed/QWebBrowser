@@ -42,12 +42,10 @@ public:
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
-
     void dropEvent(QDropEvent *event) override;
 
 private:
     const QString PRIVATE_TAB{"Private Tab"};
-    const QString HISTORY_FILENAME{"History.txt"};
     const QString HTTP{"http://"};
     const QString HTTPS{"https://"};
     const QUrl    HOME_PAGE{"https://www.google.bj"};

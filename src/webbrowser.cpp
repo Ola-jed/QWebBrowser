@@ -243,15 +243,15 @@ void WebBrowser::onUrl()
 /// \param urlToOpen
 void WebBrowser::onOpenUrl(const QUrl &urlToOpen)
 {
-    const auto url{
+    const QUrl url{
             ((urlToOpen.toString().left(7) == HTTP) || (urlToOpen.toString().left(8) == HTTPS))
             ? urlToOpen.toString()
             : HTTPS + urlToOpen.toString()
     };
-    if (!QUrl{url}.isValid())
+    if (!url.isValid())
     {
-        urlLineEdit->setText(url);
-        currentWebView()->load(QUrl{url});
+        urlLineEdit->setText(url.toString());
+        currentWebView()->load(url);
         if (!isPrivate())
         {
             tabViews->setTabText(tabViews->currentIndex(), currentWebView()->title());
