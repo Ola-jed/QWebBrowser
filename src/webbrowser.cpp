@@ -49,18 +49,18 @@ void WebBrowser::buildComponents()
     menubar         = new QMenuBar(this);
     menu            = new QMenu("Menu", this);
     urlLineEdit     = new QLineEdit(this);
-    searchButton    = new QPushButton(QIcon(":assets/search.ico"), "", this);
-    newTabButton    = new QPushButton(QIcon(":assets/new.ico"), "", this);
-    homeButton      = new QPushButton(QIcon(":assets/home.ico"), "", this);
-    previousButton  = new QPushButton(QIcon(":assets/previous.ico"), "", this);
-    nextButton      = new QPushButton(QIcon(":assets/next.ico"), "", this);
-    refreshButton   = new QPushButton(QIcon(":assets/refresh.ico"), "", this);
-    favoritesButton = new QPushButton(QIcon(":assets/favorites.ico"), "", this);
-    downloadButton  = new QPushButton(QIcon(":assets/download.ico"), "", this);
-    privateTab      = new QAction(QIcon(":assets/private.ico"), "Private tab", this);
-    historyMenu     = new QAction(QIcon(":assets/history.ico"), "History", this);
-    localFile       = new QAction(QIcon(":assets/open.ico"), "Open a local file", this);
-    favoriteList    = new QAction(QIcon(":assets/list.ico"), "Favorite list", this);
+    searchButton    = new QPushButton(QIcon(QStringLiteral(":assets/search.ico")), "", this);
+    newTabButton    = new QPushButton(QIcon(QStringLiteral(":assets/new.ico")), "", this);
+    homeButton      = new QPushButton(QIcon(QStringLiteral(":assets/home.ico")), "", this);
+    previousButton  = new QPushButton(QIcon(QStringLiteral(":assets/previous.ico")), "", this);
+    nextButton      = new QPushButton(QIcon(QStringLiteral(":assets/next.ico")), "", this);
+    refreshButton   = new QPushButton(QIcon(QStringLiteral(":assets/refresh.ico")), "", this);
+    favoritesButton = new QPushButton(QIcon(QStringLiteral(":assets/favorites.ico")), "", this);
+    downloadButton  = new QPushButton(QIcon(QStringLiteral(":assets/download.ico")), "", this);
+    privateTab      = new QAction(QIcon(QStringLiteral(":assets/private.ico")), "Private tab", this);
+    historyMenu     = new QAction(QIcon(QStringLiteral(":assets/history.ico")), "History", this);
+    localFile       = new QAction(QIcon(QStringLiteral(":assets/open.ico")), "Open a local file", this);
+    favoriteList    = new QAction(QIcon(QStringLiteral(":assets/list.ico")), "Favorite list", this);
     myWebView->load(HOME_PAGE);
     myWebView->settings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
     loadingBar->setVisible(false);
@@ -74,14 +74,14 @@ void WebBrowser::buildComponents()
 /// Create tooltips for buttons
 void WebBrowser::initTooltips()
 {
-    searchButton->setToolTip("Search");
-    newTabButton->setToolTip("New tab");
-    previousButton->setToolTip("Previous");
-    nextButton->setToolTip("Next");
-    refreshButton->setToolTip("Refresh");
-    favoritesButton->setToolTip("Favorites");
-    downloadButton->setToolTip("Download");
-    homeButton->setToolTip("Home");
+    searchButton->setToolTip(QStringLiteral("Search"));
+    newTabButton->setToolTip(QStringLiteral("New tab"));
+    previousButton->setToolTip(QStringLiteral("Previous"));
+    nextButton->setToolTip(QStringLiteral("Next"));
+    refreshButton->setToolTip(QStringLiteral("Refresh"));
+    favoritesButton->setToolTip(QStringLiteral("Favorites"));
+    downloadButton->setToolTip(QStringLiteral("Download"));
+    homeButton->setToolTip(QStringLiteral("Home"));
 }
 
 /// Building the menu components.

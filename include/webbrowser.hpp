@@ -48,7 +48,7 @@ private:
     const QString PRIVATE_TAB{"Private Tab"};
     const QString HTTP{"http://"};
     const QString HTTPS{"https://"};
-    const QUrl    HOME_PAGE{"https://www.google.bj"};
+    const QUrl    HOME_PAGE{"https://www.google.com"};
 
     WebView *currentWebView() const;
     void onLoadHistory();
